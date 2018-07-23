@@ -13,11 +13,11 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 public class TimeLogAspect {
 
-    @Pointcut("execution(@com.example.admin.aopdemo.annotation.TimeLog * *(..))")//方法切入点
+    @Pointcut("execution(@com.example.xyb.aopdemo.annotation.TimeLog * *(..))")//方法切入点
     public void methodAnnotated() {
     }
 
-    @Pointcut("execution(@com.example.admin.aopdemo.annotation.TimeLog *.new(..))")//构造器切入点
+    @Pointcut("execution(@com.example.xyb.aopdemo.annotation.TimeLog *.new(..))")//构造器切入点
     public void constructorAnnotated() {
     }
 

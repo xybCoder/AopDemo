@@ -12,11 +12,11 @@ import org.aspectj.lang.annotation.Pointcut;
 public class SingleClickAspect {
 
 
-    @Pointcut("execution(@com.example.admin.aopdemo.annotation.SingleClick * *(..))")//方法切入点
+    @Pointcut("execution(@com.example.xyb.aopdemo.annotation.SingleClick * *(..))")//方法切入点
     public void executionAspectJ() {
     }
 
-    @Pointcut("execution(@com.example.admin.aopdemo.annotation.SingleClick *.new(..))")//构造器切入点
+    @Pointcut("execution(@com.example.xyb.aopdemo.annotation.SingleClick *.new(..))")//构造器切入点
     public void constructorAspectJ() {
     }
 

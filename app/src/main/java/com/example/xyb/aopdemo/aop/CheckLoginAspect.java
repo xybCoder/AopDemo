@@ -22,7 +22,7 @@ public class CheckLoginAspect {
 
     private static final String TAG = "CheckLoginAspect";
 
-    @Pointcut("execution(@com.example.admin.aopdemo.annotation.CheckLogin * *(..))")
+    @Pointcut("execution(@com.example.xyb.aopdemo.annotation.CheckLogin * *(..))")
     public void executionAspectJ() {
 
     }
