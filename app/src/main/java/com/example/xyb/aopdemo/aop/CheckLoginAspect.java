@@ -1,9 +1,14 @@
 package com.example.xyb.aopdemo.aop;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.admin.aopdemo.annotation.CheckLogin;
+import com.example.xyb.aopdemo.LoginActivity;
+import com.example.xyb.aopdemo.annotation.CheckLogin;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -27,15 +32,29 @@ public class CheckLoginAspect {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Log.i(TAG, "aroundAspectJ(ProceedingJoinPoint joinPoint)");
         CheckLogin aspectJAnnotation = methodSignature.getMethod().getAnnotation(CheckLogin.class);
-        boolean value = aspectJAnnotation.value();
+        boolean isJump = aspectJAnnotation.isJump();
+        String token = aspectJAnnotation.token();
         Context context = (Context) joinPoint.getThis();
         Object o = null;
-        if (value) {
-            o = joinPoint.proceed();
-            Log.d(TAG, "继续往下走");
-        } else {
-            Log.i(TAG, "停止继续往下走");
+        if (TextUtils.isEmpty(token)) {//未登录
+            if (joinPoint.getThis() instanceof AppCompatActivity) {
+                context.startActivity(new Intent(context, LoginActivity.class));
+            } else if (joinPoint.getThis() instanceof Fragment) {
+                context = ((Fragment) joinPoint.getThis()).getActivity();
+                context.startActivity(new Intent(context, LoginActivity.class));
+            } else {
+                return null;
+            }
+
+            if (isJump) {
+                //是否跳转
+                o = joinPoint.proceed();
+            }
+
+        } else {//登录
+            joinPoint.proceed();
         }
+
         return o;
     }
 

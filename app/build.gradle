@@ -29,7 +29,6 @@ dependencies {
 }
 
 
-
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main

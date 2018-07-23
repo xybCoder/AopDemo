@@ -8,5 +8,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface CheckLogin {
-    boolean value();
+
+    boolean isJump() default false;
+
+    String token() default "";
 }
