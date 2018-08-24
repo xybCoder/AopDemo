@@ -21,6 +21,9 @@ public class NotifyMessageManager {
     }
 
     public void postMessage(String msg) {
+        if(listener==null){
+            return;
+        }
         listener.onHandleMessage(msg);
     }
 
